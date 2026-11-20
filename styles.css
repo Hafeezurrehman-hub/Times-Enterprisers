@@ -864,3 +864,14 @@ img{height:auto}
   .foot__grid>div:nth-child(4) a[href*="wa.me"]{display:none!important}
 }
 @media (max-width:340px){.foot .social--brand a{width:33px;height:33px}.foot .social.social--brand{gap:6px}}
+
+/* ===== mobile: stop cropping photos (show subjects fully) ===== */
+@media (max-width:700px){
+  .split__media img{aspect-ratio:auto!important;height:auto!important;object-fit:cover}
+  .cards .card img,.cards .card .ph{aspect-ratio:1/1;object-fit:cover;object-position:center 28%}
+  .cards .card{flex-basis:74%;max-width:280px}
+  .programs__imgs figure{aspect-ratio:auto}
+  .programs__imgs img{height:auto!important;aspect-ratio:4/3;object-fit:cover}
+  .tutor-team img,.team img,[class*="team"] img{aspect-ratio:auto;height:auto}
+  .hero__bg img{object-position:center 0%}
+}
