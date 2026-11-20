@@ -268,10 +268,14 @@
       else{i++;j=0;setTimeout(tick,i<tn.length?120:0);}
     })();
   }
+  var noHover=window.matchMedia('(hover: none)').matches;
   document.querySelectorAll('h2').forEach(function(h){
     if(done[h.id]) return;
     h.classList.add('tw-hover');
-    h.addEventListener('pointerenter',function(){type(h);});
+    if(noHover && 'IntersectionObserver' in window){      /* touch screens: type automatically when scrolled into view */
+      var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();type(h);}},{threshold:.7});
+      io.observe(h);
+    }else{h.addEventListener('pointerenter',function(){type(h);});}
   });
 })();
 
