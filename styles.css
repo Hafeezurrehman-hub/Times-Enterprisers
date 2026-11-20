@@ -571,3 +571,35 @@ img{height:auto}
 .social a:hover svg{fill:#fff!important;color:#fff!important}
 .social a[aria-label="TikTok"]:hover{box-shadow:0 10px 22px rgba(0,0,0,.45),-2px -2px 0 #25F4EE,2px 2px 0 #FE2C55}
 .tw-hover{cursor:default}
+
+/* ===== footer: a bit roomier ===== */
+.foot{padding-top:52px}
+.foot__grid{gap:32px;padding-bottom:34px}
+.foot h4{font-size:14px;margin-bottom:12px}
+.foot a:not(.btn):not(.brand):not(.social a){padding:6px 0;font-size:15px}
+.foot p{font-size:15px;margin-bottom:14px}
+.foot .brand{margin-bottom:14px}
+.foot__copy{padding:16px 0;font-size:14px}
+.foot .foot__wa{min-height:44px;padding:11px 24px;font-size:15px}
+@media (max-width:700px){.foot{padding-top:34px}.foot a:not(.btn):not(.brand):not(.social a){padding:8px 0}}
+
+/* ===== social icons v3: no boxes, brand-colour glyphs with soft glow ===== */
+.social{gap:14px;margin-top:16px}
+.social a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.22);box-shadow:none;overflow:visible;color:#fff}
+.social a::before,.social a::after{display:none}
+.social a svg{width:21px;height:21px;filter:drop-shadow(0 0 6px var(--g,rgba(255,255,255,.35)))}
+.social a[aria-label="Facebook"]{--g:rgba(24,119,242,.7);--b:#1877F2}.social a[aria-label="Facebook"] svg{fill:#4C9AFF}
+.social a[aria-label="Instagram"]{--g:rgba(238,42,123,.65);--b:#EE2A7B}.social a[aria-label="Instagram"] svg{color:#FF5C9D}
+.social a[aria-label="TikTok"]{--g:rgba(37,244,238,.6);--b:#25F4EE}.social a[aria-label="TikTok"] svg{fill:#fff}
+.social a[aria-label="YouTube"]{--g:rgba(255,0,0,.7);--b:#FF0000}.social a[aria-label="YouTube"] svg{fill:#FF3B3B}
+.social a[aria-label^="X"]{--g:rgba(255,255,255,.6);--b:#fff}.social a[aria-label^="X"] svg{fill:#fff}
+.social a[aria-label="Threads"]{--g:rgba(255,255,255,.6);--b:#fff}.social a[aria-label="Threads"] svg{fill:#fff}
+.social a[aria-label="LinkedIn"]{--g:rgba(10,102,194,.8);--b:#0A66C2}.social a[aria-label="LinkedIn"] svg{fill:#4BA3F5}
+.social a:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)!important;border-color:var(--b);box-shadow:0 0 18px var(--g),0 8px 18px rgba(0,0,0,.4)}
+.social a:hover svg{fill:revert-layer}
+.social a[aria-label="Facebook"]:hover svg{fill:#6DB1FF!important}.social a[aria-label="YouTube"]:hover svg{fill:#FF5A5A!important}
+.social a[aria-label="LinkedIn"]:hover svg{fill:#74B9F7!important}.social a[aria-label="Instagram"]:hover svg{color:#FF86B5!important}
+.social a[aria-label="TikTok"]:hover svg,.social a[aria-label^="X"]:hover svg,.social a[aria-label="Threads"]:hover svg{fill:#fff!important}
+.social a:hover svg{filter:drop-shadow(0 0 10px var(--g))}
+.social{gap:8px;flex-wrap:nowrap}.social a{width:38px;height:38px;flex:none}.social a svg{width:19px;height:19px}
+@media (max-width:360px){.social{flex-wrap:wrap}}
