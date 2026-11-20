@@ -442,12 +442,14 @@
           <option>Patient Care Staffing</option>
         </select>
       </label>
-      <label>Parent / Student Name
-        <input name="name" id="f-name" required autocomplete="name">
-      </label>
-      <label>Phone Number
-        <input name="phone" id="f-phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="03XX-XXXXXXX">
-      </label>
+      <div class="form__row">
+        <label>Parent / Student Name
+          <input name="name" id="f-name" required autocomplete="name">
+        </label>
+        <label>Phone Number
+          <input name="phone" id="f-phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="03XX-XXXXXXX">
+        </label>
+      </div>
       <div class="form__row" data-show="Academic Tutoring">
         <label>Academic Level
           <select name="level" id="f-level">
@@ -462,16 +464,18 @@
           </select>
         </label>
       </div>
-      <label data-show="Academic Tutoring,Quran Teaching,Language Test Preparation">Preferred Tutor Type
-        <select name="tutor" id="f-tutor">
-          <option>No Preference</option><option>Male Tutor</option><option>Female Tutor</option><option>Online Tutor</option><option>Home Tutor</option>
-        </select>
-      </label>
-      <label>City / Area
+      <div class="form__row">
+        <label data-show="Academic Tutoring,Quran Teaching,Language Test Preparation">Preferred Tutor Type
+          <select name="tutor" id="f-tutor">
+            <option>No Preference</option><option>Male Tutor</option><option>Female Tutor</option><option>Online Tutor</option><option>Home Tutor</option>
+          </select>
+        </label>
+        <label>City / Area
         <input name="city" id="f-city" autocomplete="address-level2">
-      </label>
+        </label>
+      </div>
       <label>Additional Requirements
-        <textarea name="msg" id="f-msg" rows="3"></textarea>
+        <textarea name="msg" id="f-msg" rows="2"></textarea>
       </label>
       <button class="btn btn--orange btn--lg" type="submit">Send via WhatsApp</button>
       <p class="form__msg" id="formMsg" role="status" aria-live="polite"></p>

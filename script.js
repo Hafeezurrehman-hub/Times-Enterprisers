@@ -191,3 +191,20 @@
     userPaused?v.pause():play();
   });
 })();
+
+
+/* WhatsApp buttons: open the WhatsApp app on desktop when installed, else WhatsApp Web */
+(function(){
+  var touch=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  if(touch) return; /* wa.me opens the app directly on phones */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="wa.me/"]'); if(!a||e.metaKey||e.ctrlKey) return;
+    var u; try{u=new URL(a.href);}catch(x){return;}
+    e.preventDefault();
+    var phone=u.pathname.replace(/\D/g,''), text=u.searchParams.get('text')||'';
+    var left=false, onb=function(){left=true;}; window.addEventListener('blur',onb);
+    window.location.href='whatsapp://send?phone='+phone+(text?'&text='+encodeURIComponent(text):'');
+    setTimeout(function(){window.removeEventListener('blur',onb); if(!left&&!document.hidden) window.open(a.href,'_blank','noopener');},1800);
+  });
+  window.__waOpen=function(url){var a=document.createElement('a');a.href=url;document.body.appendChild(a);a.click();document.body.removeChild(a);};
+})();

@@ -497,3 +497,33 @@ img{height:auto}
 .ticker .marq__grp span::after{content:"\2726";color:var(--orange);margin:0 26px}
 @media (max-width:700px){.hero__strip .marq__grp span{padding:12px 0;font-size:11px}.ticker .marq__grp span{font-size:13px}}
 @media (prefers-reduced-motion:reduce){.marq__track{animation:none;flex-wrap:wrap;width:auto}.marq__grp[aria-hidden]{display:none}}
+
+/* ===== compact request form ===== */
+.form{padding:24px 26px 20px;border-radius:20px}
+.form h3{font-size:21px;margin-bottom:10px}
+.form label{font-size:13px;margin-bottom:9px}
+.form input,.form select,.form textarea{margin-top:4px;padding:9px 12px;font-size:14px;border-radius:10px;min-height:0}
+.form__row{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0 12px}
+.form textarea{resize:vertical}
+.form .btn{margin-top:2px;padding:13px 22px}
+.form__msg{margin:8px 0 0;min-height:0}
+.form__msg:empty{display:none}
+.form__note{font-size:12px;margin:8px 0 0}
+@media (max-width:700px){.form{padding:20px 18px 16px}.form input,.form select,.form textarea{min-height:44px;padding:9px 12px}.form__row{grid-template-columns:1fr 1fr;gap:0 10px}}
+@media (max-width:420px){.form__row{grid-template-columns:1fr}}
+
+/* ===== social icons in brand colours ===== */
+.social{gap:12px}
+.social a{width:44px;height:44px;border:2px solid rgba(255,255,255,.85);box-shadow:0 4px 12px rgba(0,0,0,.3);color:#fff}
+.social a svg{fill:#fff;color:#fff}
+.social a:hover svg{fill:#fff}
+.social a:hover{background:inherit;transform:translateY(-4px) scale(1.08);box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.social a[aria-label="Facebook"]{background:#1877F2}
+.social a[aria-label="Instagram"]{background:linear-gradient(45deg,#F9CE34,#EE2A7B 55%,#6228D7)}
+.social a[aria-label="TikTok"]{background:#010101;box-shadow:-2px -2px 0 #25F4EE,2px 2px 0 #FE2C55}
+.social a[aria-label="TikTok"]:hover{box-shadow:-3px -3px 0 #25F4EE,3px 3px 0 #FE2C55}
+.social a[aria-label="YouTube"]{background:#FF0000}
+.social a[aria-label^="X"]{background:#000}
+.social a[aria-label="Threads"]{background:#101010}
+.social a[aria-label="LinkedIn"]{background:#0A66C2}
+.social{gap:9px}.social a{width:38px;height:38px}.social svg{width:18px;height:18px}
