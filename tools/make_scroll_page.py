@@ -12,8 +12,9 @@ h=re.sub(r'<picture class="hero__bg">.*?</picture>',
 h=h.replace('<section class="hero" id="home"','<div class="scrub" id="scrub">\n<section class="hero hero--scrub" id="home"',1)
 # close wrapper after the hero section + add scroll hint inside hero
 i=h.index('id="home"'); j=h.index('</section>',i)
+caps='<div class="scrub__caps" id="scrubCaps"><div class="cap"><span class="cap__n">01 / 07</span><h2>Home Tutors</h2><p>One-to-one tutoring at your home, at a time that suits the family.</p></div><div class="cap"><span class="cap__n">02 / 07</span><h2>Male &amp; Female Tutors</h2><p>Choose a male or female tutor, whichever suits your child best.</p></div><div class="cap"><span class="cap__n">03 / 07</span><h2>Online Tutors</h2><p>Live online lessons from the comfort of home, wherever you are.</p></div><div class="cap"><span class="cap__n">04 / 07</span><h2>Quran Teaching</h2><p>Respectful, patient Quran learning. Contact us for details and timings.</p></div><div class="cap"><span class="cap__n">05 / 07</span><h2>Language &amp; Entry Test Preparation</h2><p>Preparation for language and entry tests with a focused tutor.</p></div><div class="cap"><span class="cap__n">06 / 07</span><h2>Senior &amp; Junior Classes</h2><p>Tutoring for junior and senior classes, from first steps to board years.</p></div><div class="cap"><span class="cap__n">07 / 07</span><h2>More Than Tutoring</h2><p>Matrimonial services, domestic staffing and patient care staffing. Call 0345-7888017.</p></div></div>\n'
 hint='<div class="scrub__hint" id="scrubHint" aria-hidden="true"><span>Scroll</span><i></i></div>\n'
-h=h[:j]+hint+h[j:j+len('</section>')]+'\n</div>'+h[j+len('</section>'):]
+h=h[:j]+caps+hint+h[j:j+len('</section>')]+'\n</div>'+h[j+len('</section>'):]
 h=h.replace('</body>','<div class="scrub__bar" id="scrubBar" aria-hidden="true"></div>\n</body>',1)
 def fix(m):
     a,q,v=m.group(1),m.group(2),m.group(3)
