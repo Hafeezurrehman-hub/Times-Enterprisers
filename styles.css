@@ -531,3 +531,42 @@ img{height:auto}
 /* typewriter caret */
 .tw-caret{display:inline-block;width:3px;height:.95em;margin-left:4px;background:var(--orange);vertical-align:-.1em;animation:caret .7s steps(1) infinite}
 @keyframes caret{50%{opacity:0}}
+
+/* ===== compact footer ===== */
+.foot{padding-top:36px}
+.foot__grid{gap:24px;padding-bottom:22px;grid-template-columns:1.5fr 1fr 1.2fr 1fr}
+.foot h4{font-size:13px;margin-bottom:8px}
+.foot a:not(.btn):not(.brand):not(.social a){padding:4px 0;font-size:14px;line-height:1.35}
+.foot p{font-size:14px;margin:0 0 10px;line-height:1.5}
+.foot .brand{margin-bottom:10px}
+.foot__copy{padding:12px 0;font-size:13px}
+.foot .foot__wa{min-height:40px;padding:10px 20px;font-size:14px}
+@media (max-width:980px){.foot__grid{grid-template-columns:1fr 1fr}.foot__grid>div:first-child{grid-column:1/-1}}
+@media (max-width:700px){
+  .foot{padding-top:28px}
+  .foot__grid{grid-template-columns:1fr 1fr;gap:18px 16px}
+  .foot__grid>div:first-child{grid-column:1/-1}
+  .foot__grid>div:last-child{grid-column:1/-1}
+  .foot a:not(.btn):not(.brand):not(.social a){padding:7px 0}
+}
+
+/* ===== professional social icons: white glass tiles, brand-coloured glyph, shine on hover ===== */
+.social{gap:10px;margin-top:12px}
+.social a{position:relative;overflow:hidden;width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.35);
+  background:linear-gradient(180deg,#fff 0%,#eef0fb 100%)!important;box-shadow:0 4px 14px rgba(0,0,0,.35),inset 0 1px 0 #fff;color:#10105D;
+  transition:transform .25s,box-shadow .25s,background .25s}
+.social a svg{position:relative;z-index:1;width:20px;height:20px;transition:fill .25s,color .25s}
+.social a::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .25s;background:var(--b,#fff)}
+.social a::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);background-size:260% 100%;background-position:160% 0;background-repeat:no-repeat}
+.social a:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(0,0,0,.45),0 0 18px var(--b,#fff)}
+.social a:hover::before{opacity:1}
+.social a:hover::after{animation:shineSweep .9s ease forwards}
+.social a[aria-label="Facebook"]{--b:#1877F2}.social a[aria-label="Facebook"] svg{fill:#1877F2}
+.social a[aria-label="Instagram"]{--b:linear-gradient(45deg,#F9CE34,#EE2A7B 55%,#6228D7)}.social a[aria-label="Instagram"] svg{color:#E1306C}
+.social a[aria-label="TikTok"]{--b:#010101;box-shadow:0 4px 14px rgba(0,0,0,.35),inset 0 1px 0 #fff}.social a[aria-label="TikTok"] svg{fill:#010101}
+.social a[aria-label="YouTube"]{--b:#FF0000}.social a[aria-label="YouTube"] svg{fill:#FF0000}
+.social a[aria-label^="X"]{--b:#000}.social a[aria-label^="X"] svg{fill:#000}
+.social a[aria-label="Threads"]{--b:#101010}.social a[aria-label="Threads"] svg{fill:#101010}
+.social a[aria-label="LinkedIn"]{--b:#0A66C2}.social a[aria-label="LinkedIn"] svg{fill:#0A66C2}
+.social a:hover svg{fill:#fff!important;color:#fff!important}
+.social a[aria-label="TikTok"]:hover{box-shadow:0 10px 22px rgba(0,0,0,.45),-2px -2px 0 #25F4EE,2px 2px 0 #FE2C55}
