@@ -23,9 +23,13 @@
   var els = document.querySelectorAll('.sec__head, .split__txt, .split__media, .card, .programs > *, .faq details, .form, .contact__txt');
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); (function (t) { setTimeout(function () { t.classList.add('settled'); }, 1400); })(en.target); } });
     }, { threshold: 0.12 });
-    els.forEach(function (el) { el.classList.add('rv'); io.observe(el); });
+    els.forEach(function (el) {
+      var sib = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty('--d', Math.min(sib, 5) * 110 + 'ms');
+      el.classList.add('rv'); io.observe(el);
+    });
   }
 
   // Contact form -> opens WhatsApp with the details (no backend needed).
@@ -53,4 +57,28 @@
     msg.className = 'form__msg ok'; msg.textContent = 'Opening WhatsApp. Please press send to submit your request.';
     form.reset();
   });
+
+  // scroll progress bar
+  var bar = document.createElement('div'); bar.className = 'progress'; bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  function prog() {
+    var h = document.documentElement; var max = h.scrollHeight - h.clientHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
+  }
+  prog(); window.addEventListener('scroll', prog, { passive: true });
+
+  // 3D tilt + moving spotlight on cards and big photos (mouse only, not on reduced-motion)
+  if (window.matchMedia('(hover: hover)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.card, .split__media').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        if (e.pointerType && e.pointerType !== 'mouse') return;
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        el.style.setProperty('--mx', (x * 100) + '%'); el.style.setProperty('--my', (y * 100) + '%');
+        el.classList.add('tilting');
+        el.style.transform = 'perspective(900px) rotateX(' + ((0.5 - y) * 6) + 'deg) rotateY(' + ((x - 0.5) * 8) + 'deg) translateY(-5px)';
+      });
+      el.addEventListener('pointerleave', function () { el.classList.remove('tilting'); el.style.transform = ''; });
+    });
+  }
 })();
