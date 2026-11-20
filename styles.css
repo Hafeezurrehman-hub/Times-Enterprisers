@@ -481,3 +481,19 @@ img{height:auto}
 .foot a:hover{color:var(--orange)}
 @media (hover:none){.split__media:hover img,.programs__imgs figure:hover{transform:none}}
 @media (prefers-reduced-motion:reduce){.split__media:hover img,.card:hover img,.programs__imgs figure:hover,.programs__imgs figure:hover img{transform:none}}
+
+/* ===== right-to-left marquees ===== */
+.marq,.ticker{overflow:hidden;white-space:nowrap}
+.marq__track{display:flex;width:max-content;animation:marq 28s linear infinite}
+.marq__track--slow{animation-duration:38s}
+.marq__grp{display:flex;flex:none;align-items:center}
+.marq:hover .marq__track,.ticker:hover .marq__track{animation-play-state:paused}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero__strip .marq__grp span{padding:16px 0;font-size:12px;font-weight:800;letter-spacing:.2em;color:#fff}
+.hero__strip .marq__grp span::after{content:"";display:inline-block;width:6px;height:6px;background:var(--orange);border-radius:50%;margin:0 clamp(24px,4vw,56px);vertical-align:middle}
+.hero__strip .marq__grp span:not(:last-child)::after{margin-left:clamp(24px,4vw,56px)}
+.ticker{background:var(--navy);border-block:3px solid var(--orange);padding:14px 0}
+.ticker .marq__grp span{color:#fff;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;padding:0 6px}
+.ticker .marq__grp span::after{content:"\2726";color:var(--orange);margin:0 26px}
+@media (max-width:700px){.hero__strip .marq__grp span{padding:12px 0;font-size:11px}.ticker .marq__grp span{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.marq__track{animation:none;flex-wrap:wrap;width:auto}.marq__grp[aria-hidden]{display:none}}
