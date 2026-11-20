@@ -603,3 +603,20 @@ img{height:auto}
 .social a:hover svg{filter:drop-shadow(0 0 10px var(--g))}
 .social{gap:8px;flex-wrap:nowrap}.social a{width:38px;height:38px;flex:none}.social a svg{width:19px;height:19px}
 @media (max-width:360px){.social{flex-wrap:wrap}}
+
+/* ===== social icons v4: official brand glyphs on solid brand-colour discs ===== */
+.social.social--brand{gap:10px;flex-wrap:wrap;margin-top:16px}
+.social--brand a{position:relative;overflow:hidden;width:40px;height:40px;flex:none;border-radius:50%;border:0!important;
+  background:var(--c)!important;box-shadow:0 4px 12px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.3)!important;transition:transform .25s,box-shadow .25s,filter .25s}
+.social--brand a svg{width:20px;height:20px;fill:#fff!important;color:#fff!important;filter:none!important;position:relative;z-index:1}
+.social--brand a::before{display:none}
+.social--brand a::after{display:block;content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:260% 100%;background-position:160% 0;background-repeat:no-repeat}
+.social--brand a:hover{transform:translateY(-4px) scale(1.08);box-shadow:0 10px 22px rgba(0,0,0,.45),0 0 16px var(--c)!important;background:var(--c)!important}
+.social--brand a:hover::after{animation:shineSweep .8s ease forwards}
+.social--brand a[aria-label="Facebook"]{--c:#0866FF}
+.social--brand a[aria-label="Instagram"]{--c:#E1306C;background:radial-gradient(circle at 30% 107%,#fdf497 0,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)!important}
+.social--brand a[aria-label="TikTok"]{--c:#0b0b0b;box-shadow:0 4px 12px rgba(0,0,0,.35),-1.5px -1.5px 0 #25F4EE,1.5px 1.5px 0 #FE2C55!important}
+.social--brand a[aria-label="YouTube"]{--c:#FF0000}
+.social--brand a[aria-label^="X"]{--c:#0b0b0b;box-shadow:0 4px 12px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.35)!important}
+.social--brand a[aria-label="Threads"]{--c:#0b0b0b;box-shadow:0 4px 12px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.35)!important}
+.social--brand a[aria-label="LinkedIn"]{--c:#0A66C2}
