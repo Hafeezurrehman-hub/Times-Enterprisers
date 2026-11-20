@@ -570,3 +570,4 @@ img{height:auto}
 .social a[aria-label="LinkedIn"]{--b:#0A66C2}.social a[aria-label="LinkedIn"] svg{fill:#0A66C2}
 .social a:hover svg{fill:#fff!important;color:#fff!important}
 .social a[aria-label="TikTok"]:hover{box-shadow:0 10px 22px rgba(0,0,0,.45),-2px -2px 0 #25F4EE,2px 2px 0 #FE2C55}
+.tw-hover{cursor:default}
