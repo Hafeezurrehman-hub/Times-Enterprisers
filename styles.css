@@ -933,3 +933,13 @@ img{height:auto}
 @media (prefers-reduced-motion:reduce){
   .card,.subject,.card picture::after,.programs__imgs figure::after,.split__media::after,.social--brand a::after{animation:none!important}
 }
+
+/* ===== mobile/touch: visible shadows behind photos, cards, boxes ===== */
+@media (max-width:700px),(hover:none){
+  .card picture,.programs__imgs figure,.split__media{box-shadow:0 14px 30px rgba(16,16,93,.28),0 4px 10px rgba(16,16,93,.16);border-radius:18px}
+  .card picture img,.programs__imgs figure img,.split__media img{border-radius:inherit}
+  .subject,.faq details,.form,.contact__card{box-shadow:0 10px 24px rgba(16,16,93,.18),0 2px 6px rgba(16,16,93,.1)}
+  .social--brand a{box-shadow:0 6px 14px rgba(16,16,93,.3)}
+  .btn{box-shadow:0 8px 18px rgba(16,16,93,.25)}
+  .btn--orange{box-shadow:0 8px 20px rgba(246,161,26,.5)}
+}
