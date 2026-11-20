@@ -660,3 +660,49 @@ img{height:auto}
 .cap .cap__lead{font-size:clamp(16px,1.6vw,19px);max-width:540px;color:#e6e8ff;text-shadow:none}
 @media (max-width:700px){.cap h2{font-size:40px;max-width:none}}
 .cap p.eyebrow{color:var(--orange);font-size:13px;font-weight:800;letter-spacing:.16em;margin:0 0 18px;text-shadow:0 0 18px rgba(246,161,26,.35)}
+
+/* ===== MOBILE REFRESH (<=700px): compact, swipeable, tidy ===== */
+@media (max-width:700px){
+  .sec{padding:44px 0}
+  .sec h2{font-size:27px}
+  .sec .lead,.sec__head p{font-size:15px}
+  /* hero strip: spacing between marquee words */
+  .hero__strip .marq__grp span{padding:12px 0;font-size:11px}
+  .hero__strip .marq__grp span::after{display:inline-block!important;margin:0 22px}
+  /* swipeable card rows */
+  .cards{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin:0 -20px;padding:6px 20px 22px;scrollbar-width:none}
+  .cards::-webkit-scrollbar{display:none}
+  .cards .card{flex:0 0 76%;max-width:300px;scroll-snap-align:center}
+  .cards .card img,.cards .card .ph{aspect-ratio:16/10}
+  .cards .card .ph{aspect-ratio:16/10;min-height:0}
+  .cards .card .ph svg{width:44px;height:44px}
+  .cards .card__b{padding:16px 16px 18px}
+  .cards .card h3{font-size:18px}
+  .cards .card p{font-size:14px}
+  .cards::after{content:"";flex:0 0 6px}
+  /* subjects: two-column compact grid */
+  .subjects{grid-template-columns:1fr 1fr;gap:12px}
+  .subject{padding:16px 14px;gap:2px}
+  .subject h3{font-size:16px}
+  .subject span{font-size:12.5px}
+  .subject svg{width:22px;height:22px}
+  /* photos shorter */
+  .split{gap:28px}
+  .split__media img{aspect-ratio:4/3}
+  .programs__imgs{gap:12px}
+  .programs__imgs img{min-height:180px;max-height:220px}
+  /* steps / lists tighter */
+  .steps{gap:16px}
+  .ticks li{font-size:15px}
+  /* contact block */
+  .contact__list{gap:4px;margin:18px 0 20px}
+  .contact__list li{gap:2px 14px}
+  .contact__list a{font-size:19px}
+  .contact__list span{width:auto;min-width:78px}
+  .contact__btns{gap:10px}
+  /* faq */
+  .faq summary{padding:14px 16px;font-size:15px}
+  /* floating whatsapp slightly smaller, away from text */
+  .wa-float{width:52px;height:52px;right:14px;bottom:14px}
+}
