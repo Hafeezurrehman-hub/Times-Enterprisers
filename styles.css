@@ -899,3 +899,10 @@ img{height:auto}
 @media (max-width:360px){.hero__btns .btn{font-size:14px}}
 @media (max-width:700px){.hero h1{font-size:clamp(30px,9.2vw,42px)}}
 @media (max-width:340px){.hero h1{font-size:27px}}
+
+/* mobile: show card photos in full (no cropping of heads/faces) */
+@media (max-width:700px){
+  .cards .card img{aspect-ratio:auto!important;height:auto!important;object-fit:contain;width:100%}
+  .cards .card picture{background:#eef0f8}
+  .cards .card .ph{aspect-ratio:16/9!important}
+}
