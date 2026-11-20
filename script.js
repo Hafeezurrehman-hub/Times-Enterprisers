@@ -274,3 +274,43 @@
     h.addEventListener('pointerenter',function(){type(h);});
   });
 })();
+
+/* Scroll-scrubbed hero video (only active on /scroll/) */
+(function(){
+  var v=document.getElementById('scrubVideo'),box=document.getElementById('scrub'); if(!v||!box) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wrap=v.parentElement,poster=wrap.querySelector('.hero__poster'),hero=box.querySelector('.hero__in'),
+      hint=document.getElementById('scrubHint'),bar=document.getElementById('scrubBar'),
+      mq=window.matchMedia('(max-width: 700px)'),cur='',dur=0,pos=0,target=0,raf=0;
+  function load(){
+    var k=mq.matches?'mobile':'desktop'; if(k===cur) return; cur=k; dur=0;
+    v.src=v.dataset[k]; poster.src=v.dataset[k==='mobile'?'posterMobile':'posterDesktop']; v.load();
+  }
+  v.addEventListener('loadedmetadata',function(){dur=v.duration||0;update();});
+  var clamp=function(x){return Math.max(0,Math.min(1,x));};
+  function progress(){var r=box.getBoundingClientRect(),span=box.offsetHeight-window.innerHeight;return span>0?clamp(-r.top/span):0;}
+  function update(){
+    var p=progress();
+    var t=1-clamp((p-.22)/.28);
+    hero.style.opacity=t; hero.style.transform='translateY('+(-p*50)+'px)';
+    hero.style.pointerEvents=t>.4?'auto':'none';
+    box.querySelector('.hero--scrub').classList.toggle('is-open',p>.3);
+    if(hint) hint.style.opacity=clamp(1-p*8);
+    if(bar){var d=document.documentElement;bar.style.width=(window.scrollY/Math.max(1,d.scrollHeight-window.innerHeight)*100)+'%';}
+    target=p*(dur||0);
+    if(!raf) raf=requestAnimationFrame(step);
+  }
+  function step(){
+    raf=0; var diff=target-pos;
+    if(Math.abs(diff)>.004){
+      pos+=diff*.18;
+      if(dur&&Math.abs(v.currentTime-pos)>.01){try{v.currentTime=Math.min(pos,dur-.05);}catch(e){}}
+      if(poster&&dur) poster.style.opacity=0;
+      raf=requestAnimationFrame(step);
+    }
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',function(){update();});
+  (mq.addEventListener?mq.addEventListener('change',load):mq.addListener(load));
+  load(); update();
+})();
