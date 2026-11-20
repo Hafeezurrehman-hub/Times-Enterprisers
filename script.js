@@ -208,3 +208,40 @@
   });
   window.__waOpen=function(url){var a=document.createElement('a');a.href=url;document.body.appendChild(a);a.click();document.body.removeChild(a);};
 })();
+
+/* Typewriter headings (hero on load, others when scrolled into view) */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sel=['#hero-title','#about-title','#services-title','#how-title','#online-title','#contact-title'];
+  function nodes(el){var out=[],w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);while(w.nextNode())out.push(w.currentNode);return out;}
+  function prep(el){
+    var full=el.textContent.replace(/\s+/g,' ').trim();
+    el.setAttribute('aria-label',full);
+    el.style.minHeight=el.offsetHeight+'px';           /* no layout jump */
+    var tn=nodes(el),texts=tn.map(function(n){return n.nodeValue;});
+    tn.forEach(function(n){n.nodeValue='';});
+    var caret=document.createElement('span');caret.className='tw-caret';caret.setAttribute('aria-hidden','true');
+    el.classList.add('tw');
+    return {tn:tn,texts:texts,caret:caret};
+  }
+  function run(el,st,delay){
+    var i=0,j=0,speed=hero(el)?55:32;
+    function hero(e){return e.id==='hero-title';}
+    function tick(){
+      if(i>=st.tn.length){setTimeout(function(){st.caret.remove();el.classList.remove('tw');el.style.minHeight='';},900);return;}
+      var t=st.texts[i];
+      if(j===0&&!st.caret.parentNode||j===0) st.tn[i].parentNode.insertBefore(st.caret,st.tn[i].nextSibling);
+      if(j<t.length){j++;st.tn[i].nodeValue=t.slice(0,j);setTimeout(tick,speed);}
+      else{i++;j=0;setTimeout(tick,i<st.tn.length?180:0);}
+    }
+    setTimeout(tick,delay||0);
+  }
+  var items=sel.map(function(s){return document.querySelector(s);}).filter(Boolean);
+  items.forEach(function(el){
+    var st=prep(el);
+    if(el.id==='hero-title'){run(el,st,350);return;}
+    if(!('IntersectionObserver' in window)){st.tn.forEach(function(n,k){n.nodeValue=st.texts[k];});return;}
+    var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();run(el,st,100);}},{threshold:.6});
+    io.observe(el);
+  });
+})();

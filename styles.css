@@ -527,3 +527,7 @@ img{height:auto}
 .social a[aria-label="Threads"]{background:#101010}
 .social a[aria-label="LinkedIn"]{background:#0A66C2}
 .social{gap:9px}.social a{width:38px;height:38px}.social svg{width:18px;height:18px}
+
+/* typewriter caret */
+.tw-caret{display:inline-block;width:3px;height:.95em;margin-left:4px;background:var(--orange);vertical-align:-.1em;animation:caret .7s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
