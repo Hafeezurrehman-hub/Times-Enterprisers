@@ -887,3 +887,15 @@ img{height:auto}
   .cards .card h3,.cards--4 .card h3{font-size:19px}
   .cards .card p{font-size:15px}
 }
+
+/* mobile hero: stacked equal buttons, no phone line (WhatsApp float is there) */
+@media (max-width:700px){
+  .hero__trust{display:none}
+  .hero__btns{grid-template-columns:1fr;gap:10px}
+  .hero__btns .btn{width:100%;white-space:nowrap;min-height:48px;font-size:15px;padding:12px 16px}
+  .hero__in{padding-bottom:70px}
+  .hero__lead{-webkit-line-clamp:2}
+}
+@media (max-width:360px){.hero__btns .btn{font-size:14px}}
+@media (max-width:700px){.hero h1{font-size:clamp(30px,9.2vw,42px)}}
+@media (max-width:340px){.hero h1{font-size:27px}}
