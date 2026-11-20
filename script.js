@@ -1,12 +1,25 @@
 (function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     TESTIMONIALS: add REAL, approved feedback here. The section stays
+     hidden until at least one entry exists. Never add invented reviews.
+     Format: { quote: "…", name: "…", role: "Parent" | "Student" | "Tutor" }
+     ------------------------------------------------------------------ */
+  var TESTIMONIALS = [];
+
+  var WA_NUMBER = '923457888017';
+
   var nav = document.getElementById('nav');
   var burger = document.getElementById('burger');
   var menu = document.getElementById('menu');
 
+  /* navbar solid on scroll */
   function onScroll() { nav.classList.toggle('is-solid', window.scrollY > 40); }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* mobile menu */
   function setMenu(open) {
     menu.classList.toggle('open', open);
     nav.classList.toggle('menu-open', open);
@@ -19,66 +32,135 @@
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // gentle scroll reveal
-  var els = document.querySelectorAll('.sec__head, .split__txt, .split__media, .card, .programs > *, .faq details, .form, .contact__txt');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  /* testimonials (only if real ones were added above) */
+  if (TESTIMONIALS.length) {
+    var grid = document.getElementById('testiGrid');
+    TESTIMONIALS.forEach(function (t) {
+      var card = document.createElement('article'); card.className = 'tcard';
+      var q = document.createElement('blockquote'); q.textContent = t.quote;
+      var f = document.createElement('footer');
+      var n = document.createElement('strong'); n.textContent = t.name;
+      var r = document.createElement('span'); r.className = 'role'; r.textContent = t.role;
+      f.appendChild(n); f.appendChild(r); card.appendChild(q); card.appendChild(f); grid.appendChild(card);
+    });
+    document.getElementById('testimonials').hidden = false;
+  }
+
+  /* entrance animation (fade up, staggered inside grids) */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.sec__head, .split__txt, .split__media, .card, .subject, .tcard, .programs > *, .faq details, .form, .contact__txt');
+  if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); (function (t) { setTimeout(function () { t.classList.add('settled'); }, 1400); })(en.target); } });
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var t = en.target;
+        t.classList.add('in'); io.unobserve(t);
+        setTimeout(function () { t.classList.add('settled'); }, 1200);
+      });
     }, { threshold: 0.12 });
     els.forEach(function (el) {
-      var sib = Array.prototype.indexOf.call(el.parentNode.children, el);
-      el.style.setProperty('--d', Math.min(sib, 5) * 110 + 'ms');
+      var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty('--d', Math.min(idx % 4, 3) * 90 + 'ms');
       el.classList.add('rv'); io.observe(el);
     });
   }
 
-  // Contact form -> opens WhatsApp with the details (no backend needed).
-  // To use a real backend later, replace this handler with a fetch() to your form endpoint.
-  var WA_NUMBER = '923457888017';
-  var form = document.getElementById('form');
-  var msg = document.getElementById('formMsg');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    msg.className = 'form__msg'; msg.textContent = '';
-    var bad = false;
-    ['name', 'phone', 'interest'].forEach(function (n) {
-      var f = form.elements[n]; var ok = f.value.trim().length > 0;
-      f.classList.toggle('invalid', !ok); if (!ok) bad = true;
-    });
-    var digits = form.elements.phone.value.replace(/\D/g, '');
-    if (!bad && digits.length < 10) { form.elements.phone.classList.add('invalid'); bad = true; }
-    if (bad) { msg.textContent = 'Please fill in your name, a valid phone number and what you are looking for.'; return; }
-    var t = 'Assalam o Alaikum, I need: ' + form.elements.interest.value +
-      '\nName: ' + form.elements.name.value.trim() +
-      '\nPhone: ' + form.elements.phone.value.trim() +
-      (form.elements.city.value.trim() ? '\nCity/Area: ' + form.elements.city.value.trim() : '') +
-      (form.elements.msg.value.trim() ? '\nDetails: ' + form.elements.msg.value.trim() : '');
-    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(t), '_blank', 'noopener');
-    msg.className = 'form__msg ok'; msg.textContent = 'Opening WhatsApp. Please press send to submit your request.';
-    form.reset();
-  });
-
-  // scroll progress bar
+  /* scroll progress bar */
   var bar = document.createElement('div'); bar.className = 'progress'; bar.setAttribute('aria-hidden', 'true');
   document.body.appendChild(bar);
   function prog() {
-    var h = document.documentElement; var max = h.scrollHeight - h.clientHeight;
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
     bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
   }
   prog(); window.addEventListener('scroll', prog, { passive: true });
 
-  // 3D tilt + moving spotlight on cards and big photos (mouse only, not on reduced-motion)
-  if (window.matchMedia('(hover: hover)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.card, .split__media').forEach(function (el) {
+  /* very light tilt on service cards (mouse only) */
+  if (window.matchMedia('(hover: hover)').matches && !reduce) {
+    document.querySelectorAll('.card').forEach(function (el) {
       el.addEventListener('pointermove', function (e) {
         if (e.pointerType && e.pointerType !== 'mouse') return;
         var r = el.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-        el.style.setProperty('--mx', (x * 100) + '%'); el.style.setProperty('--my', (y * 100) + '%');
         el.classList.add('tilting');
-        el.style.transform = 'perspective(900px) rotateX(' + ((0.5 - y) * 6) + 'deg) rotateY(' + ((x - 0.5) * 8) + 'deg) translateY(-5px)';
+        el.style.transform = 'perspective(1000px) rotateX(' + ((0.5 - y) * 2) + 'deg) rotateY(' + ((x - 0.5) * 2.5) + 'deg) translateY(-4px)';
       });
       el.addEventListener('pointerleave', function () { el.classList.remove('tilting'); el.style.transform = ''; });
     });
   }
+
+  /* ------------------------------------------------------------------
+     ENQUIRY FORM: builds a formatted WhatsApp message (no backend)
+     ------------------------------------------------------------------ */
+  var form = document.getElementById('form');
+  var msg = document.getElementById('formMsg');
+  var f = {
+    service: document.getElementById('f-service'), name: document.getElementById('f-name'),
+    phone: document.getElementById('f-phone'), level: document.getElementById('f-level'),
+    subject: document.getElementById('f-subject'), tutor: document.getElementById('f-tutor'),
+    city: document.getElementById('f-city'), msg: document.getElementById('f-msg')
+  };
+
+  /* show only the fields that make sense for the chosen service */
+  function updateFields() {
+    var svc = f.service.value;
+    form.querySelectorAll('[data-show]').forEach(function (el) {
+      var on = el.getAttribute('data-show').split(',').indexOf(svc) !== -1;
+      el.hidden = !on;
+      el.querySelectorAll('select, input, textarea').forEach(function (c) { c.disabled = !on; });
+    });
+  }
+  f.service.addEventListener('change', updateFields);
+  updateFields();
+
+  function setSelect(sel, value) {
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === value || sel.options[i].text === value) { sel.selectedIndex = i; return; }
+    }
+  }
+
+  /* service / subject / class buttons pre-fill the enquiry form */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('[data-service]') : null;
+    if (!a) return;
+    setSelect(f.service, a.getAttribute('data-service'));
+    f.level.selectedIndex = 0; f.subject.selectedIndex = 0; f.tutor.selectedIndex = 0;
+    if (a.hasAttribute('data-level')) setSelect(f.level, a.getAttribute('data-level'));
+    if (a.hasAttribute('data-subject')) setSelect(f.subject, a.getAttribute('data-subject'));
+    if (a.hasAttribute('data-tutor')) setSelect(f.tutor, a.getAttribute('data-tutor'));
+    updateFields();
+  });
+
+  function val(el) { return el && !el.disabled ? el.value.trim() : ''; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.className = 'form__msg'; msg.textContent = '';
+    var digits = f.phone.value.replace(/\D/g, '');
+    var okName = f.name.value.trim().length > 1, okPhone = digits.length >= 10;
+    f.name.classList.toggle('invalid', !okName); f.phone.classList.toggle('invalid', !okPhone);
+    f.name.setAttribute('aria-invalid', String(!okName)); f.phone.setAttribute('aria-invalid', String(!okPhone));
+    if (!okName || !okPhone) {
+      msg.textContent = 'Please enter your name and a valid phone number.';
+      (okName ? f.phone : f.name).focus();
+      return;
+    }
+    var lines = ['Assalam o Alaikum, I would like to enquire about Times Home Tutors.', ''];
+    lines.push('*Service:* ' + f.service.value);
+    lines.push('*Name:* ' + f.name.value.trim());
+    lines.push('*Phone:* ' + f.phone.value.trim());
+    if (val(f.level)) lines.push('*Academic Level:* ' + val(f.level));
+    if (val(f.subject)) lines.push('*Subject:* ' + val(f.subject));
+    if (val(f.tutor)) lines.push('*Preferred Tutor Type:* ' + val(f.tutor));
+    if (val(f.city)) lines.push('*City / Area:* ' + val(f.city));
+    if (val(f.msg)) lines.push('*Additional Requirements:* ' + val(f.msg));
+    var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+
+    msg.className = 'form__msg ok';
+    msg.innerHTML = 'Opening WhatsApp. Press send there to submit. If it did not open, <a href="' + url + '" target="_blank" rel="noopener">tap here</a>.';
+    form.reset(); updateFields();
+  });
 })();
