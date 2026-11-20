@@ -212,7 +212,7 @@
 /* Typewriter headings (hero on load, others when scrolled into view) */
 (function(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var sel=['#hero-title','#about-title','#services-title','#how-title','#online-title','#contact-title'];
+  var sel=['#hero-title'];
   function nodes(el){var out=[],w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);while(w.nextNode())out.push(w.currentNode);return out;}
   function prep(el){
     var full=el.textContent.replace(/\s+/g,' ').trim();
