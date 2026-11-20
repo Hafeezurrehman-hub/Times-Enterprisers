@@ -875,3 +875,15 @@ img{height:auto}
   .tutor-team img,.team img,[class*="team"] img{aspect-ratio:auto;height:auto}
   .hero__bg img{object-position:center 0%}
 }
+
+/* ===== mobile: cards stack vertically (no sideways swipe) with larger photos ===== */
+@media (max-width:700px){
+  .cards{display:grid;grid-template-columns:1fr;gap:18px;overflow:visible;margin:0;padding:4px 0 8px;scroll-snap-type:none}
+  .cards::after{display:none}
+  .cards .card,.cards--4 .card,.cards--3 .card{flex:none;max-width:none;width:100%}
+  .cards .card img,.cards .card .ph{aspect-ratio:4/3;object-position:center 25%}
+  .cards .card picture{display:block}
+  .cards .card__b{padding:18px 18px 16px}
+  .cards .card h3,.cards--4 .card h3{font-size:19px}
+  .cards .card p{font-size:15px}
+}
