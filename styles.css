@@ -443,3 +443,41 @@ img{height:auto}
 .wa-float{animation:waGlow 2.8s ease-in-out infinite}
 @keyframes waGlow{0%,100%{box-shadow:0 8px 22px rgba(0,0,0,.3),0 0 0 0 rgba(37,211,102,.5)}50%{box-shadow:0 8px 22px rgba(0,0,0,.3),0 0 0 14px rgba(37,211,102,0)}}
 @media (prefers-reduced-motion:reduce){.btn--orange::after,.wa-float{animation:none}.split__media:hover::after,.card:hover picture::after,.programs__imgs figure:hover::after{animation:none}}
+
+/* ===== v4: shine only on the big feature photos; other items get hover effects ===== */
+.card picture::after,.programs__imgs figure::after{display:none}
+.card:hover picture::after,.programs__imgs figure:hover::after{animation:none}
+/* feature photos (About / Online / etc.): shine + lift + block slides */
+.split__media img{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.split__media:hover img{transform:translateY(-6px) scale(1.015);box-shadow:0 34px 70px rgba(16,16,93,.36),0 0 34px rgba(246,161,26,.28)}
+.split__media::before{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.split__media:hover::before{transform:translate(-8px,8px)}
+.split--rev .split__media:hover::before{transform:translate(8px,8px)}
+/* cards: zoom + tinted overlay + title colour + link arrow */
+.card picture{position:relative}
+.card picture::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(16,16,93,.45));opacity:0;transition:opacity .4s}
+.card:hover picture::before{opacity:1}
+.card:hover img{transform:scale(1.09)}
+.card h3{transition:color .25s}
+.card:hover h3{color:var(--orange)}
+.card .link{transition:letter-spacing .25s,padding-left .25s}
+.card:hover .link{padding-left:6px}
+/* programs photos: zoom + tilt-in + glow ring */
+.programs__imgs figure{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.programs__imgs img{transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .4s}
+.programs__imgs figure:hover{transform:translateY(-8px);box-shadow:0 28px 56px rgba(16,16,93,.34),0 0 0 3px rgba(246,161,26,.7)}
+.programs__imgs figure:hover img{transform:scale(1.08);filter:saturate(1.12) contrast(1.03)}
+/* subjects / testimonials / trust items */
+.subject{transition:transform .3s,box-shadow .3s,border-color .3s,background .3s}
+.subject:hover{background:linear-gradient(135deg,#fff,#fff6e4)}
+.subject:hover h3,.subject:hover strong{color:var(--orange)}
+.trust__grid>*{transition:transform .3s,background .3s}
+.trust__grid>*:hover{transform:translateY(-4px);background:#fff8ea}
+/* nav links underline grow */
+.nav__links a{position:relative}
+.nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav__links a:hover::after{transform:scaleX(1)}
+.foot a{transition:color .2s,padding-left .2s}
+.foot a:hover{color:var(--orange)}
+@media (hover:none){.split__media:hover img,.programs__imgs figure:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.split__media:hover img,.card:hover img,.programs__imgs figure:hover,.programs__imgs figure:hover img{transform:none}}
