@@ -652,3 +652,11 @@ img{height:auto}
   .hero--scrub.is-open .hero__shade{opacity:1;background:linear-gradient(0deg,rgba(11,11,69,.92) 0%,rgba(11,11,69,.55) 40%,rgba(11,11,69,0) 70%)}
 }
 @media (prefers-reduced-motion:reduce){.scrub__caps{display:none}}
+
+/* captions: same colour theme as the hero text (white heading, orange accent, light lead) */
+.cap .eyebrow{margin-bottom:18px}
+.cap h2{color:#fff;font-weight:800;font-size:clamp(40px,5.2vw,68px);line-height:1.1;margin:0 0 .35em;max-width:13ch;text-shadow:none}
+.cap h2 span{color:var(--orange);text-shadow:0 0 30px rgba(246,161,26,.45)}
+.cap .cap__lead{font-size:clamp(16px,1.6vw,19px);max-width:540px;color:#e6e8ff;text-shadow:none}
+@media (max-width:700px){.cap h2{font-size:40px;max-width:none}}
+.cap p.eyebrow{color:var(--orange);font-size:13px;font-weight:800;letter-spacing:.16em;margin:0 0 18px;text-shadow:0 0 18px rgba(246,161,26,.35)}
