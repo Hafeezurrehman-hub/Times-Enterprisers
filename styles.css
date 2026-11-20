@@ -737,3 +737,105 @@ img{height:auto}
 }
 @media (max-width:700px){.scrub__hint{display:none}}
 @media (max-width:700px) and (max-height:720px){.hero__lead{display:none}.hero__in{padding-bottom:66px}}
+
+/* ===================================================================
+   MOBILE POLISH (<=700px) — spacing system, type scale, cards, nav
+   Spacing: section 44px · heading→text 12px · text→content 20px · card gap 14px
+   Radius: 18px for every image/card · buttons 999px · min tap height 46px
+   =================================================================== */
+@media (max-width:700px){
+  :root{--r:18px}
+  body{font-size:15.5px;line-height:1.6}
+  /* hero */
+  .hero{border-radius:0 0 26px 26px}
+  .hero__shade{background:
+    linear-gradient(0deg,rgba(11,11,69,.98) 0%,rgba(11,11,69,.93) 30%,rgba(16,16,93,.5) 52%,rgba(16,16,93,.06) 74%),
+    linear-gradient(180deg,rgba(11,11,69,.6) 0,rgba(11,11,69,0) 16%)}
+  .hero h1{line-height:1.08;letter-spacing:-.01em}
+  .hero h1 span{display:inline-block}
+  .hero__lead{color:#dfe2ff}
+  .hero .eyebrow{white-space:normal;line-height:1.3}
+  .hero__btns .btn{border-radius:999px;font-weight:700}
+  .trust{margin-top:-1px;padding-top:6px}
+  /* spacing system */
+  .sec{padding:44px 0}
+  .sec .eyebrow,.sec .section-label{margin-bottom:10px}
+  .sec h2{font-size:26px;line-height:1.18;margin-bottom:12px}
+  .sec h2::after{margin-top:12px}
+  .sec p{margin-bottom:12px}
+  .sec .center,.sec__head{margin-bottom:24px}
+  .container{padding-left:20px;padding-right:20px}
+  .ticks{margin:16px 0 20px}
+  /* type scale */
+  .eyebrow{font-size:11.5px;letter-spacing:.14em}
+  .card h3,.subject h3,.steps h3{font-size:17.5px;line-height:1.25}
+  .card p,.subject span,.steps p{font-size:14.5px;line-height:1.55}
+  .btn{min-height:46px;border-radius:999px;font-size:15px;padding:12px 22px}
+  .btn:active,.link:active,.chip:active{transform:scale(.97)}
+  /* images: one radius, sane heights */
+  .split__media img,.programs__imgs figure,.card,.programs__imgs img{border-radius:var(--r)}
+  .split__media img{aspect-ratio:16/11;box-shadow:0 14px 34px rgba(16,16,93,.22)}
+  .split__media::before{display:none}
+  .programs__imgs img{min-height:0;max-height:none;height:100%}
+  .programs__imgs figure{aspect-ratio:4/3}
+  /* cards */
+  .cards{gap:14px;padding:6px 20px 20px;margin:0 -20px}
+  .cards .card{flex:0 0 78%;max-width:290px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(16,16,93,.12)}
+  .cards .card img,.cards .card .ph{aspect-ratio:16/10;height:auto}
+  .cards .card picture{display:block;border-radius:var(--r) var(--r) 0 0;overflow:hidden}
+  .cards .card__b{padding:16px 16px 14px;display:flex;flex-direction:column;flex:1}
+  .cards .card__b p{flex:1;margin-bottom:10px}
+  .cards .link,.card .link{min-height:44px;font-size:14.5px;align-items:center;margin-top:auto}
+  .card h3::after{margin-top:8px}
+  /* subjects */
+  .subject{padding:16px 14px 14px;border-radius:var(--r)}
+  .subject span{white-space:nowrap;font-size:12px;gap:4px}
+  .subject h3{min-height:2.5em;display:flex;align-items:flex-end}
+  /* programs chips */
+  .chips,.tags{gap:8px}
+  .chip,.chips span,.tag{font-size:13.5px;padding:8px 14px}
+  /* steps */
+  .steps b{width:40px;height:40px;font-size:16px}
+  /* section backgrounds: gentle rhythm */
+  .sec--gray{background:#F5F7FC}
+  /* nav */
+  .nav__in,.nav .container{height:64px}
+  .nav__links{inset:64px 0 auto 0;border-radius:0 0 22px 22px;padding:6px 22px 22px;background:linear-gradient(180deg,#14146b,#10105D);box-shadow:0 26px 50px rgba(0,0,0,.45)}
+  .nav__links a:not(.btn){padding:15px 4px;font-size:16.5px;min-height:50px;display:flex;align-items:center;justify-content:space-between}
+  .nav__links a:not(.btn)::after{display:none}
+  .nav__links a:not(.btn)::before{content:"";order:2;width:7px;height:7px;border-right:2px solid var(--orange);border-top:2px solid var(--orange);transform:rotate(45deg);margin-right:4px}
+  .nav__links .btn{margin-top:16px;min-height:48px}
+  /* footer */
+  .foot a:not(.btn):not(.brand):not(.social a){min-height:36px;display:flex;align-items:center}
+  /* FAQ */
+  .faq summary{min-height:52px;padding:14px 16px}
+}
+@media (max-width:360px){
+  .hero .eyebrow{font-size:10.5px;letter-spacing:.1em}
+  .hero h1{font-size:34px}
+  .hero__btns .btn{font-size:13.5px;padding:12px 6px}
+  .sec h2{font-size:24px}
+  .subject span::after{display:none}
+  .cards .card{flex-basis:84%}
+  .form__row{grid-template-columns:1fr}
+}
+
+/* polish fixes */
+@media (max-width:700px){
+  .faq summary{padding-right:44px;position:relative}
+  .faq summary::after,.faq summary::marker{right:16px}
+  .eyebrow{flex-wrap:nowrap}
+  .eyebrow::before{flex:none;width:24px}
+  .hero .eyebrow{display:flex;align-items:flex-start}
+  .hero .eyebrow::before{margin-top:.55em}
+  .hero__trust{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;white-space:nowrap;font-size:14px}
+  .hero__trust a{white-space:nowrap}
+}
+@media (max-width:360px){
+  .eyebrow{font-size:10.5px;letter-spacing:.1em}
+  .hero h1{font-size:30px}
+  .hero__lead{font-size:14px}
+  .hero__trust{font-size:12.5px;gap:6px}
+  .hero__btns .btn{font-size:13px;min-height:44px}
+}
+@media (max-width:340px){.hero h1{font-size:27px}}
