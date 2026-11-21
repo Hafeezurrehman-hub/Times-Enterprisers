@@ -324,3 +324,37 @@
   (mq.addEventListener?mq.addEventListener('change',load):mq.addListener(load));
   load(); update();
 })();
+
+
+/* WhatsApp: each section opens WhatsApp with its own ready-made message */
+(function(){
+  var NUM='923457888017', G='Assalam o Alaikum, ';
+  var MSG={
+    home:G+'I need a tutor. Please guide me.',
+    about:G+'I read about Times Enterprises and would like to know more about your services.',
+    owner:G+'I would like to speak with Malik Ali Shahnawaz about Times Enterprises.',
+    services:G+'I am interested in your services. Please share the details.',
+    programs:G+'I would like details about your tutoring programs and classes.',
+    subjects:G+'I need a tutor for a subject (Science, Biology, Computer Science or Arts). Please guide me.',
+    team:G+'I would like a male or female tutor. Please tell me what is available.',
+    how:G+'I would like to start. What do you need from me to arrange a tutor?',
+    success:G+'I would like to arrange a tutor for my child. Please guide me.',
+    online:G+'I am interested in online tuition. Please share the details.',
+    other:G+'I would like details about your other services (matrimonial, domestic or patient care staffing).',
+    gallery:G+'I saw your work on the website and would like to get in touch.',
+    testimonials:G+'I would like to know more about your service.',
+    faq:G+'I have a question about your service.',
+    contact:G+'I would like to request a tutor. Please contact me.'
+  };
+  function url(id){return 'https://wa.me/'+NUM+'?text='+encodeURIComponent(MSG[id]||MSG.home);}
+  document.querySelectorAll('a[data-wa]').forEach(function(a){a.href=url(a.getAttribute('data-wa'));});
+  var f=document.getElementById('waFloat'); if(!f) return;
+  var secs=[].slice.call(document.querySelectorAll('main section[id], section[id]')).filter(function(s){return MSG[s.id];});
+  var cur='';
+  function upd(){
+    var mid=window.innerHeight*0.4, id='home';
+    for(var i=0;i<secs.length;i++){var r=secs[i].getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid){id=secs[i].id;break;}}
+    if(id!==cur){cur=id;f.href=url(id);}
+  }
+  window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+})();

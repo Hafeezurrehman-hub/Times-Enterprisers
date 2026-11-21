@@ -1027,3 +1027,14 @@ img{height:auto}
 .owner__chips li{padding:9px 16px;border-radius:999px;background:#fff;color:var(--navy);font-weight:700;font-size:14px;border:1px solid var(--line);box-shadow:0 6px 14px rgba(16,16,93,.12)}
 .owner__chips li:nth-child(1){animation:floatY 5s ease-in-out infinite}.owner__chips li:nth-child(2){animation:floatY 5s ease-in-out 1s infinite}.owner__chips li:nth-child(3){animation:floatY 5s ease-in-out 2s infinite}
 @media (prefers-reduced-motion:reduce){.owner__chips li{animation:none!important}}
+
+/* ===== floating WhatsApp: owner photo + label ===== */
+.wa-float{width:auto!important;height:auto!important;border-radius:0!important;background:none!important;box-shadow:none!important;display:flex!important;flex-direction:row-reverse;align-items:center;gap:10px;animation:floatY 3.5s ease-in-out infinite!important}
+.wa-float__avatar{position:relative;width:60px;height:60px;border-radius:50%;flex:none;border:3px solid #25D366;background:#fff;box-shadow:0 8px 22px rgba(0,0,0,.3);animation:waRing 2.8s ease-in-out infinite}
+.wa-float__avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.wa-float__avatar svg{position:absolute;right:-6px;bottom:-4px;width:26px!important;height:26px!important;padding:5px;border-radius:50%;background:#25D366;fill:#fff;border:2px solid #fff}
+.wa-float__label{display:flex;flex-direction:column;line-height:1.15;background:#25D366;color:#fff;padding:8px 14px;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.wa-float__label b{font-size:14px}.wa-float__label small{font-size:11px;opacity:.9;font-weight:600}
+@keyframes waRing{0%,100%{box-shadow:0 8px 22px rgba(0,0,0,.3),0 0 0 0 rgba(37,211,102,.5)}50%{box-shadow:0 8px 22px rgba(0,0,0,.3),0 0 0 10px rgba(37,211,102,0)}}
+@media (max-width:700px){.wa-float__avatar{width:52px;height:52px}.wa-float__label{padding:6px 11px}.wa-float__label small{display:none}}
+@media (prefers-reduced-motion:reduce){.wa-float,.wa-float__avatar{animation:none!important}}
