@@ -18,7 +18,7 @@ CAPS=[("Home","Tutors","One-to-one tutoring at your home, at a time that suits t
 ("Quran","Teaching","Respectful, patient Quran learning. Contact us for details and timings."),
 ("Language &amp; Entry Test","Preparation","Preparation for language and entry tests with a focused tutor."),
 ("Senior &amp; Junior","Classes","Tutoring for junior and senior classes, from first steps to board years."),
-("More Than","Tutoring","Matrimonial services, domestic staffing and patient care staffing. Call 0345-7888017.")]
+("More Than","Tutoring","Matrimonial services, domestic staffing and patient care staffing.")]
 caps='<div class="scrub__caps" id="scrubCaps">'+''.join(f'<div class="cap"><p class="eyebrow">SERVICE 0{n+1} / 0{len(CAPS)}</p><h2>{a}<br><span>{b}</span></h2><p class="cap__lead">{d}</p></div>' for n,(a,b,d) in enumerate(CAPS))+'</div>\n'
 hint='<div class="scrub__hint" id="scrubHint" aria-hidden="true"><span>Scroll</span><i></i></div>\n'
 h=h[:j]+caps+hint+h[j:j+len('</section>')]+'\n</div>'+h[j+len('</section>'):]
