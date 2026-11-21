@@ -1016,3 +1016,5 @@ img{height:auto}
 
 .contact__btns{display:flex;flex-wrap:wrap;gap:12px}
 .contact__btns .btn--wa{box-shadow:0 8px 20px rgba(37,211,102,.4)}
+
+@media (max-width:700px){.foot__wa{display:none!important}}
