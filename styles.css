@@ -1039,3 +1039,8 @@ img{height:auto}
 @media (max-width:700px){.wa-float__avatar{width:52px;height:52px}.wa-float__label{padding:6px 11px}.wa-float__label small{display:none}}
 @media (prefers-reduced-motion:reduce){.wa-float,.wa-float__avatar{animation:none!important}}
 .wa-float__label{display:none!important}
+
+/* clearer WhatsApp badge on the floating photo */
+.wa-float__avatar{width:66px;height:66px;border-width:3px}
+.wa-float__avatar svg{right:-10px!important;bottom:-8px!important;width:38px!important;height:38px!important;padding:7px!important;border:3px solid #fff!important;background:#25D366!important;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+@media (max-width:700px){.wa-float__avatar{width:58px;height:58px}.wa-float__avatar svg{width:34px!important;height:34px!important;padding:6px!important;right:-9px!important;bottom:-7px!important}}
