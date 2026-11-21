@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#10105D">
 
 <!-- Icons -->
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -93,7 +93,7 @@
   <div class="container nav__in">
     <!-- LOGO PLACEHOLDER: replace .brand__mark + text with <img src="images/logo.svg" alt="Times Enterprises"> when the client sends the logo -->
     <a href="#home" class="brand" aria-label="Times Home Tutors – home">
-      <span class="brand__mark" aria-hidden="true">T</span>
+      <img class="brand__logo" src="images/logo-sm.png" alt="" width="48" height="48">
       <span class="brand__txt"><strong>Times</strong><small>Home Tutors</small></span>
     </a>
     <nav class="nav__links" id="menu" aria-label="Main">
@@ -372,10 +372,29 @@
         <div class="card__b"><h3>Domestic Staffing</h3><p>Help for finding household staff for your home.</p><a class="link" href="#contact" data-service="Domestic Staffing">Enquire now</a></div>
       </article>
       <article class="card">
-        <!-- IMAGE NEEDED: images/patient-care-desktop.jpg (and patient-care-mobile.jpg): caregiver with an elderly person. Replace the .ph block with an <img> when available. -->
-        <div class="ph" role="img" aria-label="Patient care staffing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.400-9.300-9.100C1.100 8.600 3 5 6.400 5c2 0 3.500 1.200 4.400 2.600h.4C12.100 6.200 13.600 5 15.600 5 19 5 20.900 8.600 21.300 11.900 19 16.600 12 21 12 21z"/></svg></div>
+        <picture><source media="(max-width: 700px)" srcset="images/patient-care-mobile.jpg"><img src="images/patient-care-desktop.jpg" alt="A caregiver offering a glass of water to an elderly woman at home" loading="lazy" width="1000" height="729"></picture>
         <div class="card__b"><h3>Patient Care Staffing</h3><p>Caregivers for patients and elderly family members at home.</p><a class="link" href="#contact" data-service="Patient Care Staffing">Enquire now</a></div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="sec sec--tint" id="gallery" aria-labelledby="gallery-title">
+  <div class="container">
+    <header class="sec__head">
+      <p class="eyebrow eyebrow--dark">OUR WORK</p>
+      <h2 id="gallery-title">Learning and care, at home and online</h2>
+    </header>
+    <div class="gallery">
+      <figure><img src="images/gal-family-home.jpg" alt="A tutor meeting a family at home" loading="lazy" width="700" height="394"></figure>
+      <figure><img src="images/gal-homework.jpg" alt="A tutor helping a boy with his homework" loading="lazy" width="700" height="875"></figure>
+      <figure><img src="images/gal-online-1.jpg" alt="A student attending an online lesson at her study desk" loading="lazy" width="700" height="394"></figure>
+      <figure><img src="images/gal-consult-office.jpg" alt="A consultant speaking with a parent and child in an office" loading="lazy" width="700" height="875"></figure>
+      <figure><img src="images/gal-family-meeting.jpg" alt="A family consultation in an office" loading="lazy" width="700" height="394"></figure>
+      <figure><img src="images/gal-consult-home.jpg" alt="A tutor talking with a parent at home" loading="lazy" width="700" height="875"></figure>
+      <figure><img src="images/gal-study-together.jpg" alt="A tutor and student studying together on a sofa" loading="lazy" width="700" height="394"></figure>
+      <figure><img src="images/gal-online-2.jpg" alt="A student following an online lesson on a laptop" loading="lazy" width="700" height="875"></figure>
     </div>
   </div>
 </section>
@@ -484,7 +503,7 @@
 <footer class="foot">
   <div class="container foot__grid">
     <div>
-      <a href="#home" class="brand brand--light" aria-label="Times Home Tutors – home"><span class="brand__mark" aria-hidden="true">T</span><span class="brand__txt"><strong>Times</strong><small>Home Tutors</small></span></a>
+      <a href="#home" class="brand brand--light" aria-label="Times Home Tutors – home"><img class="brand__logo" src="images/logo-sm.png" alt="" width="48" height="48"><span class="brand__txt"><strong>Times</strong><small>Home Tutors</small></span></a>
       <p>Times Enterprises. Male and female home and online tutors for students of all levels, available on one call.</p>
       <a class="btn btn--wa foot__wa" href="https://wa.me/923457888017?text=Assalam%20o%20Alaikum%2C%20I%20need%20a%20tutor." target="_blank" rel="noopener">WhatsApp Us</a>
       <div class="social social--brand" aria-label="Social media">
