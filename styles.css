@@ -998,3 +998,18 @@ img{height:auto}
 @keyframes trustLine{0%,30%,100%{transform:scaleX(0)}8%,22%{transform:scaleX(1)}}
 @keyframes iconPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(246,161,26,.45)}50%{transform:scale(1.1);box-shadow:0 0 0 10px rgba(246,161,26,0)}}
 @media (prefers-reduced-motion:reduce){.trust__grid,.trust__grid::after,.trust__item::before,.trust__item svg{animation:none!important}}
+
+/* ===== How it works: moving photo + stepping highlight ===== */
+#how .split__media{animation:floatY 6s ease-in-out infinite}
+#how .split__media picture{display:block;border-radius:22px;overflow:hidden}
+#how .split__media img{animation:slowZoom 10s ease-in-out infinite alternate}
+#how .split__media::before{animation:blockDrift 6s ease-in-out infinite}
+#how .split__media::after{display:block!important;content:"";position:absolute;inset:0;pointer-events:none;z-index:2;border-radius:22px;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.45) 50%,transparent 62%);background-size:260% 100%;background-position:160% 0;background-repeat:no-repeat;animation:autoShine 6s ease-in-out infinite}
+.steps li{position:relative;border-radius:14px;padding:6px 10px;margin:0 -10px;animation:stepOn 8s ease-in-out infinite}
+.steps li:nth-child(2){animation-delay:2s}.steps li:nth-child(3){animation-delay:4s}.steps li:nth-child(4){animation-delay:6s}
+.steps li b{animation:stepNum 8s ease-in-out infinite}
+.steps li:nth-child(2) b{animation-delay:2s}.steps li:nth-child(3) b{animation-delay:4s}.steps li:nth-child(4) b{animation-delay:6s}
+@keyframes blockDrift{0%,100%{translate:0 0}50%{translate:-10px 10px}}
+@keyframes stepOn{0%,28%,100%{background:transparent}6%,22%{background:#FFF4E0}}
+@keyframes stepNum{0%,28%,100%{background:var(--navy);color:var(--orange);transform:scale(1)}6%,22%{background:var(--orange);color:var(--navy);transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){#how .split__media,#how .split__media img,#how .split__media::before,#how .split__media::after,.steps li,.steps li b{animation:none!important}}
