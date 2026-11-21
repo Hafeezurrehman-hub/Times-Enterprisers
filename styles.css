@@ -1047,3 +1047,6 @@ img{height:auto}
 
 /* no green ring around the floating photo */
 .wa-float__avatar{border:0!important;background:transparent;animation:none!important;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+
+/* thinner white outline on the WhatsApp badge */
+.wa-float__avatar svg{border-width:1.5px!important}
