@@ -1018,3 +1018,12 @@ img{height:auto}
 .contact__btns .btn--wa{box-shadow:0 8px 20px rgba(37,211,102,.4)}
 
 @media (max-width:700px){.foot__wa{display:none!important}}
+
+/* ===== owner section ===== */
+.owner__name{display:flex;flex-direction:column;gap:2px;margin:0 0 14px}
+.owner__name strong{font-size:22px;color:var(--navy)}
+.owner__name span{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)}
+.owner__chips{list-style:none;padding:0;margin:18px 0 22px;display:flex;flex-wrap:wrap;gap:10px}
+.owner__chips li{padding:9px 16px;border-radius:999px;background:#fff;color:var(--navy);font-weight:700;font-size:14px;border:1px solid var(--line);box-shadow:0 6px 14px rgba(16,16,93,.12)}
+.owner__chips li:nth-child(1){animation:floatY 5s ease-in-out infinite}.owner__chips li:nth-child(2){animation:floatY 5s ease-in-out 1s infinite}.owner__chips li:nth-child(3){animation:floatY 5s ease-in-out 2s infinite}
+@media (prefers-reduced-motion:reduce){.owner__chips li{animation:none!important}}
