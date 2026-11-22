@@ -403,7 +403,8 @@
 
 /* Scroll-spy: highlight the nav link of the section currently in view */
 (function(){
-  var links={};[].slice.call(document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)')).forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  var links={},flinks={};[].slice.call(document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)')).forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  [].slice.call(document.querySelectorAll('.foot__nav a[href^="#"]')).forEach(function(a){flinks[a.getAttribute('href').slice(1)]=a;});
   var alias={owner:'about',subjects:'programs',team:'programs',how:'programs',success:'programs',other:'online',gallery:'online',testimonials:'online',faq:'contact'};
   var secs=[].slice.call(document.querySelectorAll('section[id]')).filter(function(s){return links[s.id]||alias[s.id];});
   if(!secs.length) return; var cur=null;
@@ -413,7 +414,7 @@
     var key=links[id]?id:alias[id];
     if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4) key='contact';
     if(key===cur) return; cur=key;
-    Object.keys(links).forEach(function(k){var on=k===key;links[k].classList.toggle('is-active',on);if(on)links[k].setAttribute('aria-current','true');else links[k].removeAttribute('aria-current');});
+    Object.keys(links).forEach(function(k){var on=k===key;links[k].classList.toggle('is-active',on);if(on)links[k].setAttribute('aria-current','true');else links[k].removeAttribute('aria-current');if(flinks[k])flinks[k].classList.toggle('is-active',on);});
   }
   window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
 })();
