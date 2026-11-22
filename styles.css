@@ -1093,3 +1093,24 @@ body.cmodal-open{overflow:hidden}
 .foot__nav a{transition:color .25s,padding-left .25s}
 .foot__nav a.is-active{color:var(--orange)!important;font-weight:700;padding-left:8px;border-left:3px solid var(--orange)}
 .foot__nav a.is-active{border-left:0!important;padding-left:0!important}
+
+/* ===== trust bar on phones: even spacing, calmer sequential highlight ===== */
+@media (max-width:700px){
+  .trust{padding:22px 0 22px!important;margin-top:0!important}
+  .trust__grid{animation:none!important;box-shadow:0 10px 26px rgba(16,16,93,.14)!important}
+  .trust__grid::after{display:none}
+  .trust__item{padding:16px 18px!important;gap:16px}
+  .trust__item:hover{transform:none;background:transparent}
+  .trust__item svg{width:26px!important;height:26px!important;padding:11px!important;box-sizing:content-box;background:#FFF0D6!important;animation:tIcon 8s ease-in-out infinite!important}
+  .trust__item:nth-child(2) svg{animation-delay:2s!important}.trust__item:nth-child(3) svg{animation-delay:4s!important}.trust__item:nth-child(4) svg{animation-delay:6s!important}
+  .trust__item::before{left:0!important;right:auto!important;top:14%;bottom:14%!important;height:auto!important;width:4px;border-radius:0 4px 4px 0;transform:scaleY(0)!important;transform-origin:center;animation:tBar 8s ease-in-out infinite!important}
+  .trust__item:nth-child(2)::before{animation-delay:2s!important}.trust__item:nth-child(3)::before{animation-delay:4s!important}.trust__item:nth-child(4)::before{animation-delay:6s!important}
+  .trust__item{animation:tRow 8s ease-in-out infinite!important}
+  .trust__item:nth-child(2){animation-delay:2s!important}.trust__item:nth-child(3){animation-delay:4s!important}.trust__item:nth-child(4){animation-delay:6s!important}
+}
+@keyframes tBar{0%,28%,100%{transform:scaleY(0)}6%,22%{transform:scaleY(1)}}
+@keyframes tRow{0%,28%,100%{background:transparent}6%,22%{background:#FFF8EC}}
+@keyframes tIcon{0%,28%,100%{background:#FFF0D6;stroke:var(--orange)}6%,22%{background:var(--orange);stroke:var(--navy)}}
+@media (max-width:700px) and (prefers-reduced-motion:reduce){.trust__item,.trust__item::before,.trust__item svg{animation:none!important}}
+@media (max-width:700px){.trust{padding:40px 0 0!important}}
+@media (max-width:700px){.trust{padding-top:50px!important}.trust+.about{padding-top:28px!important}}
