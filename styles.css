@@ -1092,3 +1092,4 @@ body.cmodal-open{overflow:hidden}
 /* footer quick links follow the top menu */
 .foot__nav a{transition:color .25s,padding-left .25s}
 .foot__nav a.is-active{color:var(--orange)!important;font-weight:700;padding-left:8px;border-left:3px solid var(--orange)}
+.foot__nav a.is-active{border-left:0!important;padding-left:0!important}
