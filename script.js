@@ -341,6 +341,7 @@
     success:G+'I would like to arrange a tutor for my child. Please guide me.',
     online:G+'I am interested in online tuition. Please share the details.',
     other:G+'I would like details about your other services (matrimonial, domestic or patient care staffing).',
+    courses:G+'I would like details about your skill development courses (IELTS / PTE, E-Commerce, Digital Marketing, Graphic Designing).',
     gallery:G+'I saw your work on the website and would like to get in touch.',
     testimonials:G+'I would like to know more about your service.',
     faq:G+'I have a question about your service.',
@@ -357,4 +358,45 @@
     if(id!==cur){cur=id;f.href=url(id);}
   }
   window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+})();
+
+
+/* Courses: details modal + course-specific WhatsApp enquiry */
+(function(){
+  var NUM='923457888017';
+  var D={
+    ielts:{t:'IELTS / PTE Preparation',o:'Preparation for the IELTS and PTE English tests, covering all four skills.',l:['Listening','Reading','Speaking','Writing'],d:'6 Weeks'},
+    ecommerce:{t:'E-Commerce',o:'Learn how online selling works, from setting up a store to running day-to-day operations.',l:['Online store management','Product listing','E-commerce operations','Digital selling'],d:'3 Months'},
+    digital:{t:'Digital Marketing',o:'Understand how businesses reach customers online through search, social media and paid campaigns.',l:['SEO','Social Media Marketing','PPC / Paid Advertising','Digital Campaigns','Analytics'],d:'3 Months'},
+    graphic:{t:'Graphic Designing',o:'Build creative design skills with the tools used for logos, social posts and brand visuals.',l:['Photoshop','Illustrator','Canva','Creative Design','Branding'],d:'3 Months'}
+  };
+  var m=document.getElementById('cmodal'); if(!m) return;
+  var box=m.querySelector('.cmodal__box'), last=null;
+  function open(k,btn){
+    var c=D[k]; if(!c) return; last=btn;
+    document.getElementById('cmodal-title').textContent=c.t;
+    document.getElementById('cmodal-over').textContent=c.o;
+    document.getElementById('cmodal-list').innerHTML=c.l.map(function(x){return '<li>'+x+'</li>';}).join('');
+    document.getElementById('cmodal-dur').textContent=c.d;
+    var msg='Assalam-o-Alaikum, I am interested in the '+c.t+' course at Times Enterprisers. Please share further details regarding enrollment.';
+    document.getElementById('cmodal-cta').href='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg);
+    m.hidden=false; document.body.classList.add('cmodal-open');
+    requestAnimationFrame(function(){m.classList.add('is-open');box.focus();});
+  }
+  function close(){
+    if(m.hidden) return; m.classList.remove('is-open'); document.body.classList.remove('cmodal-open');
+    setTimeout(function(){m.hidden=true;},260); if(last) last.focus();
+  }
+  document.querySelectorAll('[data-course]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-course'),b);});});
+  m.addEventListener('click',function(e){if(e.target.hasAttribute('data-close'))close();});
+  document.addEventListener('keydown',function(e){
+    if(m.hidden) return;
+    if(e.key==='Escape'){close();return;}
+    if(e.key==='Tab'){
+      var f=[].slice.call(m.querySelectorAll('button,a[href]')).filter(function(x){return x.offsetParent!==null;});
+      if(!f.length) return; var a=f[0], z=f[f.length-1];
+      if(e.shiftKey&&(document.activeElement===a||document.activeElement===box)){e.preventDefault();z.focus();}
+      else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}
+    }
+  });
 })();
