@@ -1,5 +1,6 @@
 {
-  "rewrites": [
-    { "source": "/", "has": [{ "type": "host", "value": "(www\\.)?timeshometutors\\.com" }], "destination": "/video/index.html" }
+  "routes": [
+    { "src": "/", "has": [{ "type": "host", "value": "(www\\.)?timeshometutors\\.com" }], "dest": "/video/index.html" },
+    { "handle": "filesystem" }
   ]
 }
