@@ -403,7 +403,7 @@
 
 /* Scroll-spy: highlight the nav link of the section currently in view */
 (function(){
-  var links={};[].slice.call(document.querySelectorAll('.nav__links a[href^="#"]')).forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  var links={};[].slice.call(document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)')).forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
   var alias={owner:'about',subjects:'programs',team:'programs',how:'programs',success:'programs',other:'online',gallery:'online',testimonials:'online',faq:'contact'};
   var secs=[].slice.call(document.querySelectorAll('section[id]')).filter(function(s){return links[s.id]||alias[s.id];});
   if(!secs.length) return; var cur=null;
