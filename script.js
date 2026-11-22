@@ -331,8 +331,8 @@
   var NUM='923457888017', G='Assalam o Alaikum, ';
   var MSG={
     home:G+'I need a tutor. Please guide me.',
-    about:G+'I read about Times Enterprises and would like to know more about your services.',
-    owner:G+'I would like to speak with Malik Ali Shahnawaz about Times Enterprises.',
+    about:G+'I read about Times Home Tutors and would like to know more about your services.',
+    owner:G+'I would like to speak with Malik Ali Shahnawaz about Times Home Tutors.',
     services:G+'I am interested in your services. Please share the details.',
     programs:G+'I would like details about your tutoring programs and classes.',
     subjects:G+'I need a tutor for a subject (Science, Biology, Computer Science or Arts). Please guide me.',
@@ -378,7 +378,7 @@
     document.getElementById('cmodal-over').textContent=c.o;
     document.getElementById('cmodal-list').innerHTML=c.l.map(function(x){return '<li>'+x+'</li>';}).join('');
     document.getElementById('cmodal-dur').textContent=c.d;
-    var msg='Assalam-o-Alaikum, I am interested in the '+c.t+' course at Times Enterprisers. Please share further details regarding enrollment.';
+    var msg='Assalam-o-Alaikum, I am interested in the '+c.t+' course at Times Home Tutors. Please share further details regarding enrollment.';
     document.getElementById('cmodal-cta').href='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg);
     m.hidden=false; document.body.classList.add('cmodal-open');
     requestAnimationFrame(function(){m.classList.add('is-open');box.focus();});
