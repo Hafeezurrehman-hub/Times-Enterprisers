@@ -1082,3 +1082,9 @@ img{height:auto}
 .cmodal__cta{width:100%;justify-content:center}
 body.cmodal-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.ccard,.ccard__img img,.cmodal__bg,.cmodal__box{transition:none}}
+
+/* active section in the menu */
+.nav__links a:not(.btn){transition:color .25s}
+.nav__links a.is-active:not(.btn){color:var(--orange)}
+.nav__links a.is-active:not(.btn)::after{width:100%}
+@media (max-width:980px){.nav__links a.is-active:not(.btn){color:var(--orange);border-left:3px solid var(--orange);padding-left:10px}}
