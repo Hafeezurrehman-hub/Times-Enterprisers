@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "has": [{ "type": "host", "value": "(www\\.)?timeshometutors\\.com" }], "destination": "/video/index.html" }
+  ]
+}
